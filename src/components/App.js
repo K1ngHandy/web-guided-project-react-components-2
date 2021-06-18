@@ -11,14 +11,24 @@ import friends from '../dummy-data/friends'
 export default function App() {
   // 👉 3- Initialize a slice of state to keep track of the data
   // using the dummy data as the initial value of the slice of state
-  const [friendsData, setFriendsData] - useState(friends)
-  console.log(friendsData)
+  const [friendsData, setFriendsData] = useState(friends)
 
   // 👉 4- Initialize a slice to keep track of the value of the search box
   // using an empty string as the initial value of the slice
+  const [searchTerm, setSearchTerm] = useState('')
 
   // 👉 5- Build a `changeStatus` function that takes an id and
   // changes the `married` from true to false and viceversa
+  const changeStatus = (id) => {
+    setFriendsData(
+      friendsData.map((friend) => {
+        if (friends.id === id) {
+          // friend in line 28 is friend2
+          return { ...friend, married: !friend.married }
+        } else return friend
+      })
+    )
+  }
 
   // STRETCH - Make a helper function that returns
   // a filtered array of friends data (filtering by search term)
