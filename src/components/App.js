@@ -12,6 +12,7 @@ export default function App() {
   // 👉 3- Initialize a slice of state to keep track of the data
   // using the dummy data as the initial value of the slice of state
   const [friendsData, setFriendsData] = useState(friends)
+  console.log(FriendsList)
 
   // 👉 4- Initialize a slice to keep track of the value of the search box
   // using an empty string as the initial value of the slice
@@ -21,6 +22,7 @@ export default function App() {
   // changes the `married` from true to false and viceversa
   const changeStatus = (id) => {
     setFriendsData(
+      // if 'friend' in line 25 is friend1
       friendsData.map((friend) => {
         if (friends.id === id) {
           // friend in line 28 is friend2
@@ -40,6 +42,10 @@ export default function App() {
 
       {/* 👉 7- Render the FriendsList component */}
       {/* What prop/props does FriendsList need? */}
+      <FriendsList friendsData={changeStatus}  />
     </div>
   )
 }
+
+export const hello = 'world'
+
