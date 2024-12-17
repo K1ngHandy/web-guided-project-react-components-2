@@ -7,8 +7,6 @@ import Search from './Search'
 // 👉 2- Import the dummy data that will power the application.
 // (Tomorrow we'll fetch the data from an API instead.)
 import friendsData, { hello } from '../dummy-data/friends'
-console.log('Hello:', hello);
-console.log('Friends data:', friendsData);
 
 export default function App() {
   // 👉 3- Initialize a slice of state to keep track of the data
@@ -22,7 +20,14 @@ export default function App() {
   // 👉 5- Build a `changeStatus` function that takes an id and
   // changes the `married` from true to false and viceversa
   const changeStatus = (id) => {
-    console.log('ID:', id);
+    const updatedFriends = friends.map(fr => {
+      if (fr.id === id) {
+        return { ...fr, married: !fr.married };
+      } else {
+        return fr;
+      }
+    })
+    setFriends(updatedFriends);
   }
 
   // STRETCH - Make a helper function that returns
@@ -36,7 +41,7 @@ export default function App() {
 
       {/* 👉 7- Render the FriendsList component */}
       {/* What prop/props does FriendsList need? */}
-      <FriendsList friends={friends} />
+      <FriendsList friends={friends} changeStatus={changeStatus} />
     </div>
   )
 }
